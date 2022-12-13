@@ -19,8 +19,6 @@ namespace unimath
 
 	bool is_latex(std::ostream& out);
 
-	std::ostream& operator<<(std::ostream &, const C);
-
 	template<typename T>
 	bool has_leading_minus(T t) {return t < 0;}
 
@@ -39,5 +37,38 @@ namespace unimath
 		if(has_leading_minus(t))
 			return -t;
 		return t;
+	}
+	
+	template<typename T>
+	std::ostream& operator<<(std::ostream& out, const std::complex<T> c)
+	{
+		if(!is_latex(out))
+			return std::operator<<(out, c);
+
+		if(c.imag() == T(0))
+		{
+			out << c.real();
+		}
+		else if(c.real() == T(0))
+		{
+			if(c.imag() == T(1))
+				out << "i";
+			else if(c.imag() == T(-1))
+				out << "-i";
+			else
+				out << c.imag() << "i";
+		}
+		else
+		{
+			out << "(" << c.real();
+			if(c.imag() == T(1))
+				out << " + i";
+			else if(c.imag() == T(-1))
+				out << " - i";
+			else
+				out << (has_leading_minus(c.imag())?" - ":" + ") << strip_leading_minus(c.imag()) << "i";
+			out << ")";
+		}
+		return out;
 	}
 }

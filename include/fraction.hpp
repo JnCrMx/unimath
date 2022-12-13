@@ -8,6 +8,7 @@ namespace unimath
 	{
 		public:
 			fraction(int p = 0, int q = 1);
+			fraction(long p, long q);
 			fraction(float f);
 
 			bool operator==(const fraction other) const;
@@ -27,8 +28,8 @@ namespace unimath
 		protected:
 			void clean();
 		private:
-			int m_p;
-			int m_q;
+			long m_p;
+			long m_q;
 
 			friend std::ostream& operator<<(std::ostream&, const fraction);
 	};

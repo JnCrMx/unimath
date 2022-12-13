@@ -11,12 +11,17 @@ namespace unimath
 		clean();
 	}
 
+	fraction::fraction(long p, long q) : m_p(p), m_q(q)
+	{
+		clean();
+	}
+
 	fraction::fraction(float f)
 	{
-		int q;
-		for(q = 1; ((int)f)!=f; q*=10, f*=10);
+		long q;
+		for(q = 1; ((long)f)!=f; q*=10, f*=10);
 
-		m_p = (int)f;
+		m_p = (long)f;
 		m_q = q;
 		clean();
 	}
@@ -29,7 +34,7 @@ namespace unimath
 			return;
 		}
 
-		int gcd = std::gcd(m_p, m_q);
+		long gcd = std::gcd(m_p, m_q);
 		m_p /= gcd;
 		m_q /= gcd;
 

@@ -9,6 +9,7 @@
 #include <vector>
 #include <random>
 #include <map>
+#include <functional>
 
 namespace unimath
 {

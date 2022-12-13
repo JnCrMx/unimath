@@ -225,7 +225,7 @@ namespace unimath
 					if(is_latex(*out))
 					{
 						*out 	<< "\\xrightarrow{\\text{\\MakeUppercase{\\romannumeral" << (a+1) 
-								<< "}}\\cdot";
+								<< "}}\\cdot ";
 						if(has_leading_minus(c)) *out << "\\left(";
 						*out << c;
 						if(has_leading_minus(c)) *out << "\\right)";
